@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import Principles from '../components/Principles.astro';
+import { site } from '../data/site';
+---
+<Base title="About" description="EigenCodeAI is a content studio that makes content with AI tools and human direction.">
+  <section class="section">
+    <div class="wrap narrow">
+      <p class="eyebrow">About</p>
+      <h1>A studio built on AI and good judgement.</h1>
+      <p class="lede">{site.legalName} is a content studio. We make music, videos, short series, websites, apps and social media content, for clients and for ourselves.</p>
+      <p>We build our own tools to make that content, and we're working on videos that show those tools at work.</p>
+      <p>Alongside client work, we make content for learning and content just for fun. That's where we try new ideas first.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap narrow">
+      <p class="eyebrow">The name</p>
+      <h2>Why “Eigen”?</h2>
+      <p>In maths, an eigenvector is a direction that holds steady when everything else is being transformed. That's how we think about AI: the tools change fast, and our direction stays steady.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">How we work</p>
+      <h2>Made with AI. Owned by people.</h2>
+      <Principles />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .narrow { max-width: 760px; }
+</style>

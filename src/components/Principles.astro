@@ -1,0 +1,32 @@
+---
+const points = [
+  {
+    title: 'People direct, AI builds',
+    text: 'A person decides what every piece should be and signs off on it before it goes out. AI does the heavy lifting in between.',
+  },
+  {
+    title: 'Our own tools',
+    text: 'We build the in-house tools our content is made with, so we can shape each step of the process.',
+  },
+  {
+    title: 'Honest labels',
+    text: 'We say how something was made: human-made, AI-assisted or fully AI-made.',
+  },
+];
+---
+<div class="principles">
+  {points.map((p, i) => (
+    <div class="p">
+      <span class="n">0{i + 1}</span>
+      <h3>{p.title}</h3>
+      <p class="muted">{p.text}</p>
+    </div>
+  ))}
+</div>
+
+<style>
+  .principles { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .p { padding: 1.5rem; border-left: 2px solid var(--evergreen); background: linear-gradient(90deg, rgba(15,107,69,.12), transparent); border-radius: 0 var(--radius) var(--radius) 0; }
+  .n { font-family: var(--mono); font-size: .8rem; color: var(--royal-blue-bright); display: block; margin-bottom: .6rem; }
+  p { margin: 0; }
+</style>

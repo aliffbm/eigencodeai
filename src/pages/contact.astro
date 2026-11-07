@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Contact" description="Get in touch with EigenCodeAI.">
+  <section class="section">
+    <div class="wrap narrow">
+      <p class="eyebrow">Contact</p>
+      <h1>Let's make something.</h1>
+      <p class="lede">Tell us what you want to make, or just say hello.</p>
+
+      <div class="cards">
+        <a class="c" href={`mailto:${site.email}`}>
+          <span class="label">Email</span>
+          <span class="value">{site.email}</span>
+        </a>
+        {site.socials.map((s) => (
+          <a class="c" href={s.url} rel="noopener" target="_blank">
+            <span class="label">{s.label}</span>
+            <span class="value">{s.handle}</span>
+          </a>
+        ))}
+      </div>
+      <p class="muted small">More social channels are on the way.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .narrow { max-width: 760px; }
+  .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 2.5rem; }
+  .c { display: flex; flex-direction: column; gap: .3rem; padding: 1.4rem; border-radius: var(--radius); background: var(--panel);
+    border: 1px solid var(--line); text-decoration: none; transition: border-color .2s; }
+  .c:hover { border-color: var(--royal-blue); }
+  .label { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--evergreen-bright); }
+  .value { color: var(--silver-bright); font-weight: 600; word-break: break-all; }
+  .small { margin-top: 1.5rem; font-size: .9rem; }
+</style>

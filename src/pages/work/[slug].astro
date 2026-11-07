@@ -1,0 +1,70 @@
+---
+import Base from '../../layouts/Base.astro';
+import { work, groups, statusLabel, type WorkItem } from '../../data/work';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return work.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+interface Props { item: WorkItem }
+const { item } = Astro.props;
+const soon = item.status === 'coming-soon';
+const others = work.filter((w) => w.group === item.group && w.slug !== item.slug);
+const youtube = site.socials.find((s) => s.label === 'YouTube');
+---
+<Base title={item.title} description={`${item.title} from ${site.name}: ${item.summary}`}>
+  <section class="section">
+    <div class="wrap narrow">
+      <a class="back" href="/work">← All work</a>
+      <div class="head">
+        <span class="icon" aria-hidden="true">{item.icon}</span>
+        <span class:list={['badge', `badge-${item.status}`]}>{statusLabel[item.status]}</span>
+      </div>
+      <p class="eyebrow">{groups[item.group].title}</p>
+      <h1>{item.title}</h1>
+      <p class="lede">{item.summary}</p>
+      {item.body.map((p) => <p>{p}</p>)}
+
+      {soon ? (
+        <div class="note soon">
+          <h3>Coming soon</h3>
+          <p class="muted">We're still working on this one. Follow us on YouTube to see it when it's ready.</p>
+          {youtube && <a class="btn btn-ghost" href={youtube.url} rel="noopener" target="_blank">{youtube.label} · {youtube.handle}</a>}
+        </div>
+      ) : (
+        <div class="note">
+          <h3>Want {item.title.toLowerCase()} made?</h3>
+          <p class="muted">Send us a short note about what you have in mind.</p>
+          <a class="btn btn-primary" href={`mailto:${site.email}?subject=${encodeURIComponent(item.title)}`}>Email us</a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  {others.length > 0 && (
+    <section class="section">
+      <div class="wrap narrow">
+        <h2>More {groups[item.group].title.toLowerCase()}</h2>
+        <ul class="others">
+          {others.map((o) => (
+            <li><a href={`/work/${o.slug}`}>{o.title}</a> <span class:list={['badge', `badge-${o.status}`]}>{statusLabel[o.status]}</span></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+  .narrow { max-width: 760px; }
+  .back { display: inline-block; margin-bottom: 2rem; color: var(--silver-dim); text-decoration: none; font-size: .95rem; }
+  .back:hover { color: var(--silver-bright); }
+  .head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+  .icon { width: 60px; height: 60px; display: grid; place-items: center; border-radius: 16px; font-size: 1.7rem;
+    color: var(--silver-bright); background: linear-gradient(135deg, rgba(47,86,224,.4), rgba(15,107,69,.4)); border: 1px solid var(--line); }
+  .note { margin-top: 2.5rem; padding: 1.6rem; border-radius: var(--radius); background: var(--panel); border: 1px solid var(--line); }
+  .note.soon { background: transparent; border-style: dashed; border-color: var(--silver-dim); }
+  .note h3 { margin-bottom: .3rem; }
+  .others { list-style: none; padding: 0; margin: 0; display: grid; gap: .6rem; }
+  .others li { display: flex; align-items: center; gap: .8rem; }
+</style>

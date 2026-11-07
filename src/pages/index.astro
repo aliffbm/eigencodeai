@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import WorkCard from '../components/WorkCard.astro';
+import Principles from '../components/Principles.astro';
+import { site } from '../data/site';
+import { work, groups } from '../data/work';
+const services = work.filter((w) => w.group === 'services');
+const originals = work.filter((w) => w.group === 'originals');
+---
+<Base>
+  <section class="hero">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow">Content studio</p>
+      <h1>AI-powered content,<br /><span class="accent">directed by people.</span></h1>
+      <p class="lede">{site.description}</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/work">See what we make</a>
+        <a class="btn btn-ghost" href="/contact">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">{groups.services.title}</p>
+      <h2>{groups.services.intro}</h2>
+      <div class="grid">{services.map((item) => <WorkCard item={item} />)}</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">{groups.originals.title}</p>
+      <h2>{groups.originals.intro}</h2>
+      <div class="grid">{originals.map((item) => <WorkCard item={item} />)}</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">How we work</p>
+      <h2>Made with AI. Owned by people.</h2>
+      <Principles />
+    </div>
+  </section>
+
+  <section class="section cta">
+    <div class="wrap center">
+      <h2>Have something in mind?</h2>
+      <p class="lede">Tell us what you want to make. We'll tell you how we'd make it.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href={`mailto:${site.email}`}>Email us</a>
+        <a class="btn btn-ghost" href={site.socials[0].url} rel="noopener" target="_blank">Watch on YouTube</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { position: relative; overflow: hidden; padding: clamp(5rem, 12vw, 9rem) 0 clamp(4rem, 9vw, 7rem); }
+  .glow { position: absolute; inset: -30% -10% auto auto; width: 70vw; height: 70vw; max-width: 900px; max-height: 900px;
+    background: radial-gradient(circle at 40% 40%, rgba(47,86,224,.35), transparent 55%),
+                radial-gradient(circle at 65% 65%, rgba(15,107,69,.32), transparent 55%);
+    filter: blur(20px); pointer-events: none; }
+  .hero .wrap { position: relative; }
+  .section h2 { margin-bottom: 2rem; }
+  .center { text-align: center; }
+  .center .lede { margin-inline: auto; }
+  .center .actions { justify-content: center; }
+  .cta { background: linear-gradient(180deg, var(--black), var(--ink)); }
+</style>

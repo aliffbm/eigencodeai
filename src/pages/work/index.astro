@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import { work, groups, type Group } from '../../data/work';
+const order: Group[] = ['services', 'originals'];
+---
+<Base title="Work" description="The services EigenCodeAI offers and the content we're making for ourselves.">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Work</p>
+      <h1>What we make</h1>
+      <p class="lede">Services we offer today, and our own projects on the way.</p>
+    </div>
+  </section>
+  {order.map((g) => (
+    <section class="section">
+      <div class="wrap">
+        <h2>{groups[g].title}</h2>
+        <p class="muted intro">{groups[g].intro}</p>
+        <div class="grid">{work.filter((w) => w.group === g).map((item) => <WorkCard item={item} />)}</div>
+      </div>
+    </section>
+  ))}
+</Base>
+
+<style>
+  .intro { margin-bottom: 2rem; }
+</style>

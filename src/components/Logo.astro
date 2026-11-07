@@ -1,0 +1,23 @@
+---
+interface Props { size?: number }
+const { size = 34 } = Astro.props;
+---
+<span class="logo">
+  <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden="true">
+    <defs>
+      <linearGradient id="logo-g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#2f56e0" />
+        <stop offset="1" stop-color="#0f6b45" />
+      </linearGradient>
+    </defs>
+    <rect width="64" height="64" rx="14" fill="url(#logo-g)" />
+    <path d="M20 50 L30 30 L22 14 h7 L44 50 h-7 L32.5 39 L27 50 Z" fill="#e6e9ee" />
+  </svg>
+  <span class="word">EigenCode<span class="ai">AI</span></span>
+</span>
+
+<style>
+  .logo { display: inline-flex; align-items: center; gap: .6rem; }
+  .word { font-weight: 750; font-size: 1.15rem; letter-spacing: -0.02em; color: var(--silver-bright); }
+  .ai { color: var(--royal-blue-bright); margin-left: .05em; }
+</style>
