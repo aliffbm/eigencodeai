@@ -95,6 +95,39 @@ export const work: WorkItem[] = [
     ],
   },
   {
+    slug: 'coloring-books',
+    title: 'Coloring Books',
+    group: 'originals',
+    status: 'coming-soon',
+    icon: '✿',
+    summary: 'Coloring books, drawn by Iris and readied for print by Pax.',
+    body: [
+      'Iris draws each book page by page and redraws whatever a person sends back. Pax turns the finished book into everything Amazon KDP needs. A person approves the upload.',
+    ],
+  },
+  {
+    slug: 'stories',
+    title: 'Stories',
+    group: 'originals',
+    status: 'coming-soon',
+    icon: '❦',
+    summary: 'Stories and novels, drafted by Calliope.',
+    body: [
+      'Calliope drafts stories and novels. An editor decides what stays.',
+    ],
+  },
+  {
+    slug: 'buying-guides',
+    title: 'Buying Guides',
+    group: 'originals',
+    status: 'coming-soon',
+    icon: '◈',
+    summary: 'Product comparisons, researched by Atlas and checked by a person.',
+    body: [
+      'Atlas researches products and writes up the comparison. A person checks it before it goes out.',
+    ],
+  },
+  {
     slug: 'learning',
     title: 'Learning',
     group: 'originals',
@@ -102,7 +135,8 @@ export const work: WorkItem[] = [
     icon: '✎',
     summary: 'Content that teaches something.',
     body: [
-      'We are making our own learning content: things we wanted to understand, made into something others can learn from too.',
+      'How-tos for books, music and building your own AI agents, one topic at a time.',
+      'Things we had to figure out ourselves, made into something others can learn from too.',
     ],
   },
   {
@@ -122,9 +156,10 @@ export const work: WorkItem[] = [
     group: 'originals',
     status: 'coming-soon',
     icon: 'λ',
-    summary: 'Videos of the in-house tools we build our content with.',
+    summary: 'Build logs from inside an AI studio, hosted by Eigen and Kai.',
     body: [
-      'The content we make comes out of tools we build ourselves. In this series we will show those tools at work, and how a piece goes from idea to finished.',
+      'Our content is made by a team of AI agents we build ourselves. On our YouTube channel, Eigen and Kai will show how the studio actually runs: the agents at work, what broke this week, and how a piece goes from idea to finished.',
+      'First up: a trailer that introduces the AI staff.',
     ],
   },
 ];

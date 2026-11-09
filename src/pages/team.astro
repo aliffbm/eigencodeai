@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import CastCard from '../components/CastCard.astro';
+import Disclosure from '../components/Disclosure.astro';
+import { hosts, agents, upcoming } from '../data/cast';
+---
+<Base title="Team" description="Meet the AI staff of EigenCodeAI: hosts Eigen and Kai, and the agents who make our music, videos, coloring books, guides, research and stories.">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Team</p>
+      <h1>Meet the AI staff.</h1>
+      <p class="lede">Everyone on this page works at EigenCodeAI. None of them are people. And none of them can publish a thing without one.</p>
+      <Disclosure />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Hosts</p>
+      <h2>Eigen and Kai</h2>
+      <div class="hosts">{hosts.map((m) => <CastCard member={m} size="lg" />)}</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Agents</p>
+      <h2>Seven agents, one job each</h2>
+      <p class="muted intro">Each agent is named for a figure from myth and does one job. Every agent drafts; a person decides what goes out.</p>
+      <div class="agents">{agents.map((m) => <CastCard member={m} />)}</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">On the way</p>
+      <h2>New hires</h2>
+      <p class="muted intro">Designed. Not built yet.</p>
+      <div class="upcoming">
+        {upcoming.map((u) => (
+          <div class="ghost">
+            <svg class="silhouette" viewBox="0 0 80 96" aria-hidden="true"><circle cx="40" cy="28" r="18" /><path d="M6 96c0-22 15-38 34-38s34 16 34 38z" /></svg>
+            <h3>{u.name}</h3>
+            <p class="role">{u.role}</p>
+            <span class="badge badge-coming-soon">Not built yet</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section rule">
+    <div class="wrap center">
+      <p class="eyebrow">The one rule</p>
+      <h2>Agents draft. People approve.</h2>
+      <p class="lede">Every piece starts as a draft, and a person decides what goes public. Including this page.</p>
+      <Disclosure />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro { margin: -1rem 0 2rem; max-width: 40rem; }
+  .section h2 { margin-bottom: 1.5rem; }
+  .hosts { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 860px; }
+  .agents { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+  .upcoming { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .ghost { border: 1px dashed var(--silver-dim); border-radius: var(--radius); padding: 1.4rem; text-align: center; }
+  .silhouette { display: block; width: 72px; height: 86px; margin: 0 auto 1rem; fill: none; stroke: var(--silver); stroke-width: 2; opacity: .7; }
+  .ghost h3 { margin: 0; }
+  .role { font-family: var(--mono); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--silver-dim); margin: .3rem 0 .9rem; }
+  .center { text-align: center; }
+  .center .lede { margin-inline: auto; }
+  .center :global(.disclosure) { justify-content: center; }
+  .rule h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
+</style>

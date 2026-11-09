@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Principles from '../components/Principles.astro';
+import Disclosure from '../components/Disclosure.astro';
 import { site } from '../data/site';
 ---
 <Base title="About" description="EigenCodeAI is a content studio that makes content with AI tools and human direction.">
@@ -9,7 +10,8 @@ import { site } from '../data/site';
       <p class="eyebrow">About</p>
       <h1>A studio built on AI and good judgement.</h1>
       <p class="lede">{site.legalName} is a content studio. We make music, videos, short series, websites, apps and social media content, for clients and for ourselves.</p>
-      <p>We build our own tools to make that content, and we're working on videos that show those tools at work.</p>
+      <p>The work is made by a team of AI agents we build ourselves, and directed by a team of people who sign off on every piece before it goes out. Agents draft. People approve.</p>
+      <p>We're starting a YouTube channel where our hosts, Eigen and Kai, show how the studio runs.</p>
       <p>Alongside client work, we make content for learning and content just for fun. That's where we try new ideas first.</p>
     </div>
   </section>
@@ -18,7 +20,12 @@ import { site } from '../data/site';
     <div class="wrap narrow">
       <p class="eyebrow">The name</p>
       <h2>Why “Eigen”?</h2>
-      <p>In maths, an eigenvector is a direction that holds steady when everything else is being transformed. That's how we think about AI: the tools change fast, and our direction stays steady.</p>
+      <p>In maths, an eigenvector is a direction that holds steady when everything else is being transformed. That's how we think about AI: the tools change every week, and our direction doesn't.</p>
+      <figure class="eigen">
+        <img src="/cast/eigen-three-states.jpg" alt="Eigen in three states: resting with steady rays, excited with rays swirling, and moving on two stubby legs" width="1200" height="800" loading="lazy" />
+        <figcaption>It's also the name of our co-host. Eigen's rays are its eigenvectors: steady at rest, swirling when it's excited. <a href="/team#eigen">Meet Eigen and the team</a>.</figcaption>
+      </figure>
+      <Disclosure />
     </div>
   </section>
 
@@ -33,4 +40,7 @@ import { site } from '../data/site';
 
 <style>
   .narrow { max-width: 760px; }
+  .eigen { margin: 2rem 0 0; }
+  .eigen img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--line); }
+  figcaption { font-size: .95rem; color: var(--silver); margin-top: .8rem; }
 </style>

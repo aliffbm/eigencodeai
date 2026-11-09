@@ -2,6 +2,9 @@
 import Base from '../layouts/Base.astro';
 import WorkCard from '../components/WorkCard.astro';
 import Principles from '../components/Principles.astro';
+import CastCard from '../components/CastCard.astro';
+import Disclosure from '../components/Disclosure.astro';
+import { hosts, agents } from '../data/cast';
 import { site } from '../data/site';
 import { work, groups } from '../data/work';
 const services = work.filter((w) => w.group === 'services');
@@ -26,6 +29,20 @@ const originals = work.filter((w) => w.group === 'originals');
       <p class="eyebrow">{groups.services.title}</p>
       <h2>{groups.services.intro}</h2>
       <div class="grid">{services.map((item) => <WorkCard item={item} />)}</div>
+    </div>
+  </section>
+
+  <section class="section staff">
+    <div class="wrap">
+      <p class="eyebrow">Meet the AI staff</p>
+      <h2>None of them are people.</h2>
+      <p class="lede">Our hosts, Eigen and Kai, and seven AI agents make the work. A team of people directs it and signs off on every piece.</p>
+      <div class="staff-grid">
+        <div class="hosts">{hosts.map((m) => <a href={`/team#${m.slug}`} class="agent-link"><CastCard member={m} size="sm" /></a>)}</div>
+        <div class="agents">{agents.map((m) => <a href={`/team#${m.slug}`} class="agent-link"><CastCard member={m} size="sm" /></a>)}</div>
+      </div>
+      <div class="actions"><a class="btn btn-ghost" href="/team">Meet the whole team</a></div>
+      <Disclosure />
     </div>
   </section>
 
@@ -69,4 +86,12 @@ const originals = work.filter((w) => w.group === 'originals');
   .center .lede { margin-inline: auto; }
   .center .actions { justify-content: center; }
   .cta { background: linear-gradient(180deg, var(--black), var(--ink)); }
+  .staff .lede { margin-bottom: 2rem; }
+  .staff-grid { display: grid; gap: 1rem; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); align-items: start; }
+  @media (max-width: 860px) { .staff-grid { grid-template-columns: 1fr; } }
+  .hosts { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
+  .agents { display: grid; gap: .75rem; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  @media (max-width: 520px) { .agents { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .agent-link { text-decoration: none; color: inherit; display: block; transition: transform .2s; }
+  .agent-link:hover { transform: translateY(-2px); }
 </style>
